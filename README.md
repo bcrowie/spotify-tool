@@ -1,5 +1,5 @@
 # spotify-tool
-Query info from Spotify.
+Query info from Spotify (Limited to only playlists at this time).
 
 # Usage
 
