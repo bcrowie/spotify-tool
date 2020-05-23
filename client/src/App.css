@@ -1,0 +1,36 @@
+* {
+  box-sizing: border-box;
+  margin: auto;
+}
+
+div form {
+  margin: 1rem auto;
+  width: 200px;
+}
+
+div form label {
+  margin-right: 1rem;
+}
+
+div form div {
+  margin-top: 1rem;
+}
+
+div form div button {
+  margin-right: 0.5rem;
+}
+
+div table {
+  border: solid 1px grey;
+}
+
+div table thead th {
+  font-size: 0.75rem;
+  min-width: 100px;
+}
+
+div table tbody tr td {
+  border: solid 1px grey;
+  font-size: 0.75rem;
+  min-width: 100px;
+}
