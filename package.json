@@ -15,7 +15,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "concurrently \"node app\" \"cd ./client/ && npm start\"",
-    "install-all": "concurrently \"npm i\" \"cd ./client/ && npm i\""
+    "installall": "concurrently \"npm i\" \"cd ./client/ && npm i\""
   },
   "repository": {
     "type": "git",
