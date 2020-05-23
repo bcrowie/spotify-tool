@@ -8,7 +8,7 @@ Clone or download repository. You must also add http://localhost:8888/callback/ 
 
 Then run the following:
 
-'npm installall' to install dependencies for server and client,
+'npm i' to install dependencies for server and client (for now, you must run 'npm i' in both root folder and client folder,
 'npm start'
 
 Login with Spotify after entering your client_id and client_secret and search away.
