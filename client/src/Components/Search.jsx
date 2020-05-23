@@ -7,9 +7,11 @@ import { useEffect } from "react";
 const spotifyApi = new Spotify();
 
 const Search = ({ auth }) => {
+  let [amount, setAmount] = useState(0);
   const [input, setInput] = useState();
   const [results, setResults] = useState([]);
   const [searching, setSearching] = useState();
+  const [finished, setFinished] = useState(true);
 
   if (auth.access_token) {
     spotifyApi.setAccessToken(auth.access_token);
@@ -17,18 +19,37 @@ const Search = ({ auth }) => {
 
   useEffect(() => {
     if (input) {
+      setAmount(0);
+      setFinished(false);
       setSearching(true);
       const search = async (term) => {
+        let noMatch = 0;
+        let timeout = 200;
         let searchResults = [];
-        await spotifyApi.searchPlaylists(term, { limit: 50 }).then((data) => {
-          data.body.playlists.items.forEach(async (item) => {
-            const res = await spotifyApi.getPlaylist(item.id);
-            searchResults.push(res.body);
+
+        for (let i = 0; i < 4 || noMatch > 10; i++) {
+          await spotifyApi.searchPlaylists(term, { limit: 50 }).then((data) => {
+            data.body.playlists.items.forEach(async (item) => {
+              setTimeout(async () => {
+                const res = await spotifyApi.getPlaylist(item.id);
+                if (searchResults[res.body]) {
+                  return;
+                } else {
+                  searchResults.push(res.body);
+                  setAmount(amount++);
+                }
+
+                if (amount > 90) timeout = 1000;
+                if (amount > 100) timeout = 2000;
+              }, timeout);
+            });
           });
-        });
+        }
+
         setTimeout(() => {
           setResults((results) => searchResults);
           setSearching(false);
+          setFinished(true);
         }, 3000);
       };
       search(input);
@@ -39,7 +60,6 @@ const Search = ({ auth }) => {
     "id",
     "Name",
     "Description",
-    "Email",
     "Followers",
     "Tracks",
     "Owner Name",
@@ -67,8 +87,9 @@ const Search = ({ auth }) => {
             Search
           </button>
           <button
-            onClick={() => {
+            onClick={(e) => {
               if (results.length > 0) {
+                e.preventDefault();
                 TableToExcel.convert(document.getElementById("table"), {
                   name: `query-${input}-${Date.now()}.xlsx`,
                 });
@@ -81,7 +102,8 @@ const Search = ({ auth }) => {
           </button>
         </div>
       </form>
-      {searching && <p>Searching...</p>}
+      {searching && <p>Searching... Found {amount} results.</p>}
+      {finished && <p>Found {amount} results.</p>}
       <table id="table">
         <thead>
           {headings.map((head) => (
@@ -92,8 +114,8 @@ const Search = ({ auth }) => {
           {results.length === 0 ? (
             <tr></tr>
           ) : (
-            results.map((data) => {
-              return <Row data={data} />;
+            results.map((data, index) => {
+              return <Row data={data} idx={index} />;
             })
           )}
         </tbody>

@@ -4,16 +4,15 @@ import "../App.css";
 const Row = (props) => {
   return (
     <tr>
+      <td>{props.idx + 1}</td>
       <td>
         {(
           <a href={`https://open.spotify.com/playlist/${props.data.id}`}>
-            {props.data.id}
+            {props.data.name}
           </a>
         ) || "null"}
       </td>
-      <td>{props.data.name || "null"}</td>
       <td>{props.data.description || "null"}</td>
-      <td>{props.data.owner.email || "null"}</td>
       <td>{props.data.followers.total || "null"}</td>
       <td>{props.data.tracks.items.length || "null"}</td>
       <td>
