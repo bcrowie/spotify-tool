@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Spotify from "spotify-web-api-node";
 import TableToExcel from "@linways/table-to-excel";
 import Row from "./Row";
+import "../Styles/Style.css";
 import { useEffect } from "react";
 
 const spotifyApi = new Spotify();
@@ -70,6 +71,7 @@ const Search = ({ auth }) => {
     <div>
       <form>
         <label htmlFor="input">
+          Search:
           <input id="input" type="text" />
         </label>
         <div>
