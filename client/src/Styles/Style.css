@@ -1,0 +1,41 @@
+div form {
+  align-content: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: auto;
+}
+
+div form label {
+  align-items: center;
+  display: flex;
+  margin: auto;
+  justify-content: flex-end;
+}
+
+div form label input {
+  border: solid 1px #ccc;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 1.1em;
+  margin-left: 1em;
+  outline: none;
+  padding: 0.6em;
+}
+
+button {
+  background-color: rgb(2, 177, 61);
+  border: solid 2px rgb(15, 228, 86);
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: bold;
+  outline: none;
+  padding: 0.5em 1em;
+  transition: all ease-in-out 100ms;
+}
+
+button:hover {
+  background-color: rgb(4, 197, 68);
+}
