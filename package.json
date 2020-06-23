@@ -14,7 +14,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently \"node app\" \"cd ./client/ && npm start\"",
+    "start": "node app",
     "installall": "concurrently \"npm i\" \"cd ./client/ && npm i\""
   },
   "repository": {
