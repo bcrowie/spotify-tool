@@ -3,6 +3,11 @@
   margin: auto;
 }
 
+div p {
+  margin: auto;
+  width: 150px;
+}
+
 div form {
   margin: 1rem auto;
   width: 200px;
